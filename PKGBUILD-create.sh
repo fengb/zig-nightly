@@ -27,6 +27,7 @@ package() {
   cd "\${srcdir}/${EXTRACT}"
   install -D -m0755 zig "\${pkgdir}/usr/bin/zig"
 
-  find lib/zig -type f -print0 | xargs -0 -I {} install -D -m0644 "{}" "\${pkgdir}/usr/{}"
+  mkdir -p "\${pkgdir}/usr/lib"
+  mv lib/zig "\${pkgdir}/usr/lib"
 }
 EOF
