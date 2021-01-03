@@ -4,8 +4,7 @@ set -eou pipefail
 
 meta="$(curl -s https://ziglang.org/download/index.json)"
 
-VERSION="$(<<<"$meta" jq --raw-output '.master.version | sub("\\+.*"; "")')"
-DATE="$(<<<"$meta" jq --raw-output '.master.date | gsub("-"; "")')"
+VERSION="$(<<<"$meta" jq --raw-output '.master.version | sub("\\+.*"; "") | gsub("-"; "_")')"
 TARBALL="$(<<<"$meta" jq --raw-output '.master["x86_64-linux"].tarball')"
 SHA256="$(<<<"$meta" jq --raw-output '.master["x86_64-linux"].shasum')"
 EXTRACT="$(basename "$TARBALL" .tar.xz)"
@@ -13,7 +12,7 @@ EXTRACT="$(basename "$TARBALL" .tar.xz)"
 cat >PKGBUILD <<EOF
 pkgname=zig
 pkgver="$VERSION"
-pkgrel="$DATE"
+pkgrel="1"
 pkgdesc="A general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software"
 arch=('x86_64')
 url="https://ziglang.org"
