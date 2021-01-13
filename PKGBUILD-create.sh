@@ -13,7 +13,7 @@ cat >PKGBUILD <<EOF
 pkgname=zig
 pkgver="$VERSION"
 pkgrel="1"
-pkgdesc="A general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software"
+pkgdesc="a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software"
 arch=('x86_64')
 url="https://ziglang.org"
 license=('MIT')
@@ -27,6 +27,6 @@ package() {
   install -D -m0755 zig "\${pkgdir}/usr/bin/zig"
 
   mkdir -p "\${pkgdir}/usr/lib"
-  mv lib/zig "\${pkgdir}/usr/lib"
+  mv lib "\${pkgdir}/usr/lib/zig"
 }
 EOF
